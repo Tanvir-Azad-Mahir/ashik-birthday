@@ -2,66 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Ashik Rahman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Ashik Rahman 🎉</title>
   <style>
     body {
       margin: 0;
-      padding: 20px 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ffd6d6, #fff3c4);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #333;
       text-align: center;
-      overflow-y: auto;
+      overflow-x: hidden;
     }
+
     h1 {
+      margin-top: 40px;
       font-size: 3em;
-      color: #e60073;
-      margin: 20px 0 10px;
+      color: #d80073;
     }
+
     h2 {
-      font-size: 1.5em;
-      color: #444;
+      font-weight: normal;
+      color: #5a5a5a;
     }
+
     img {
-      width: 250px;
-      border-radius: 20px;
-      margin-top: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      margin: 30px auto;
+      display: block;
     }
-    .countdown {
+
+    #countdown {
       font-size: 2em;
-      margin: 20px 0;
-      color: #222;
+      margin: 30px;
+      color: #4b0082;
     }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    .music-btn {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background: #e60073;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .music-btn:hover {
-      background: #b30059;
-    }
-    /* Fixed Stop Music Button */
+
     #stop-music-btn {
       position: fixed;
-      bottom: 20px;
+      top: 20px;
       right: 20px;
       padding: 12px 18px;
       font-size: 16px;
@@ -74,80 +55,74 @@
       transition: background 0.3s ease;
       z-index: 9999;
     }
+
     #stop-music-btn:hover {
       background: #b30059;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #f06292;
+      animation: float 3s ease-in-out infinite;
+      border-radius: 50%;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
+
   <h1>Happy Birthday Ashik Rahman 🎉</h1>
   <h2>Wishing you joy, success, and love on your special day!</h2>
   <img src="ashik.jpg" alt="Ashik Rahman" />
-  <div class="countdown" id="countdown"></div>
 
-  <!-- Audio with autoplay and loop -->
+  <div id="countdown"></div>
+
+  <!-- Background Music -->
   <audio id="birthday-audio" autoplay loop>
     <source src="happy.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Optional Start Music button (can remove if you want) -->
-  <button class="music-btn" onclick="playMusic()">Start Music</button>
-
-  <canvas id="confetti-canvas"></canvas>
+  <!-- Stop Music Button -->
+  <button id="stop-music-btn" onclick="stopMusic()">Stop Music</button>
 
   <script>
-    const targetDate = new Date("July 29, 2025 00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
+    const audio = document.getElementById('birthday-audio');
 
-    setInterval(() => {
+    function stopMusic() {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+
+    // Countdown Timer
+    const countdown = document.getElementById("countdown");
+    const birthdayDate = new Date("July 29, 2025 00:00:00").getTime();
+
+    const interval = setInterval(() => {
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      const distance = birthdayDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "🎂 It's Ashik's Birthday Today!";
+        return;
+      }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (distance > 0) {
-        countdownEl.innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-      } else {
-        countdownEl.innerHTML = "🎂 It's Ashik's Birthday Today! 🎈";
-      }
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left until the celebration 🎉`;
     }, 1000);
-
-    const audio = document.getElementById('birthday-audio');
-
-    // Attempt autoplay on page load
-    window.addEventListener('load', () => {
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          console.log("Autoplay prevented, please click Start Music");
-        });
-      }
-    });
-
-    function playMusic() {
-      audio.play();
-    }
-
-    function stopMusic() {
-      audio.pause();
-      audio.currentTime = 0;
-    }
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
-    const confettiCanvas = document.getElementById('confetti-canvas');
-    const confetti = window.confetti.create(confettiCanvas, { resize: true });
-    setInterval(() => {
-      confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-    }, 3000);
-  </script>
-
-  <!-- Fixed Stop Music Button -->
-  <button id="stop-music-btn" onclick="stopMusic()">Stop Music</button>
 </body>
 </html>
