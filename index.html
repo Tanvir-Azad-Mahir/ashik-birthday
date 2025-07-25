@@ -44,8 +44,8 @@
       left: 0;
       z-index: -1;
     }
-    .stop-btn {
-      margin-top: 20px;
+    .music-btn {
+      margin: 10px;
       padding: 10px 20px;
       font-size: 16px;
       border: none;
@@ -55,7 +55,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .stop-btn:hover {
+    .music-btn:hover {
       background: #b30059;
     }
   </style>
@@ -66,15 +66,15 @@
   <img src="ashik.jpg" alt="Ashik Rahman" />
   <div class="countdown" id="countdown"></div>
 
-  <!-- 🎵 Music with Autoplay -->
-  <audio id="birthday-audio" autoplay loop>
-   <source src="happy.mp3" type="audio/mpeg" />
-
+  <!-- Audio Setup without autoplay -->
+  <audio id="birthday-audio" loop>
+    <source src="happy.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
-  <!-- 🛑 Stop Music Button -->
-  <button class="stop-btn" onclick="document.getElementById('birthday-audio').pause()">Stop Music</button>
+  <!-- Music Control Buttons -->
+  <button class="music-btn" onclick="playMusic()">Start Music</button>
+  <button class="music-btn" onclick="stopMusic()">Stop Music</button>
 
   <canvas id="confetti-canvas"></canvas>
 
@@ -97,6 +97,15 @@
         countdownEl.innerHTML = "🎂 It's Ashik's Birthday Today! 🎈";
       }
     }, 1000);
+
+    const audio = document.getElementById('birthday-audio');
+    function playMusic() {
+      audio.play();
+    }
+    function stopMusic() {
+      audio.pause();
+      audio.currentTime = 0;
+    }
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -109,4 +118,3 @@
   </script>
 </body>
 </html>
-
