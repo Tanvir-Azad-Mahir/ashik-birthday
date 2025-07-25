@@ -4,59 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Birthday Ashik Rahman</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #ff99cc, #66ccff);
-      color: white;
-      text-align: center;
+      background: linear-gradient(to bottom, #ffb6c1, #fff);
       overflow-x: hidden;
     }
 
+    .container {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
     h1 {
-      margin-top: 50px;
-      font-size: 3rem;
-      animation: fadeIn 2s ease-in-out;
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      color: #e60073;
+      margin-bottom: 10px;
     }
 
-    .photo {
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 30px auto;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    .subtext {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 30px;
     }
 
-    .wish {
-      font-size: 1.5rem;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-      animation: fadeIn 3s ease-in-out;
-    }
-
-    .gallery {
+    .album {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding: 30px 10px;
+      margin-top: 40px;
     }
 
-    .gallery img {
+    .album img {
       width: 200px;
-      height: 200px;
+      height: 250px;
       object-fit: cover;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .album img:hover {
+      transform: scale(1.1);
     }
 
     #stop-music-btn {
@@ -70,8 +64,7 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: background 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 9999;
     }
 
@@ -79,64 +72,102 @@
       background: #b30059;
     }
 
-    #tap-note {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      background: rgba(0,0,0,0.7);
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      color: #fff;
-      z-index: 9998;
-      animation: fadeIn 1s ease-in-out;
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      text-align: center;
+      font-size: 16px;
+      color: #333;
+      background: rgba(255, 255, 255, 0.6);
+      border-top: 1px solid #ccc;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(#ff69b4, #e60073);
+      border-radius: 50%;
+      animation: floatBalloon 10s infinite;
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    @keyframes floatBalloon {
+      0% {
+        bottom: -100px;
+        transform: translateX(0);
+      }
+      100% {
+        bottom: 100vh;
+        transform: translateX(100px);
+      }
     }
   </style>
 </head>
-
 <body>
-  <h1>🎉 Happy Birthday Ashik Rahman 🎂</h1>
-  <img src="ashik2.jpg" alt="Ashik Rahman" class="photo" />
-  <p class="wish">
-    Wishing you a day filled with love, joy, and unforgettable memories. Keep smiling and shining bright always! 💖
-  </p>
+  <div class="container">
+    <h1>Happy Birthday Ashik Rahman!</h1>
+    <p class="subtext">Wishing you joy, success, and sweet memories 💖</p>
 
-  <!-- Optional Gallery -->
-  <div class="gallery">
-    <img src="ashik.jpg" alt="Ashik 1">
-    <img src="ashik1.jpg" alt="Ashik 2">
-    <img src="ashik3.jpg" alt="Ashik 3">
-    <img src="ashik4.jpg" alt="Ashik 3">
-    <img src="ashik5.jpg" alt="Ashik 3">
-     <img src="ashik6.jpg" alt="Ashik 3">
-    <!-- Add more images as needed -->
+    <div class="album">
+      <img src="ashik.jpg" alt="Ashik Photo 1" />
+      <img src="ashik1.jpg" alt="Ashik Photo 2" />
+      <img src="ashik3.jpg" alt="Ashik Photo 3" />
+      <img src="ashik4.jpg" alt="Ashik Photo 3" />
+      <img src="ashik5.jpg" alt="Ashik Photo 3" />
+      <img src="ashik6.jpg" alt="Ashik Photo 3" />
+    </div>
   </div>
 
-  <!-- Audio element -->
-  <audio id="birthday-audio" src="happy.mp3" loop></audio>
+  <!-- Balloons -->
+  <div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="balloon" style="left: 30%; animation-delay: 2s;"></div>
+  <div class="balloon" style="left: 50%; animation-delay: 4s;"></div>
+  <div class="balloon" style="left: 70%; animation-delay: 1s;"></div>
+  <div class="balloon" style="left: 90%; animation-delay: 3s;"></div>
+
+  <!-- Audio -->
+  <audio id="birthday-audio" autoplay loop>
+    <source src="happy.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
 
   <!-- Stop Music Button -->
   <button id="stop-music-btn" onclick="stopMusic()">Stop Music</button>
 
-  <!-- Tap to play notice -->
-  <div id="tap-note">🔊 Tap anywhere to play music</div>
+  <!-- Footer -->
+  <footer>
+    Made with ❤️ by Tsmia Rahman Mysha
+  </footer>
 
+  <!-- Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    const audio = document.getElementById('birthday-audio');
-
     function stopMusic() {
+      const audio = document.getElementById("birthday-audio");
       audio.pause();
       audio.currentTime = 0;
     }
 
-    // Start music on user interaction
-    function startMusicOnce() {
-      audio.play().catch(err => console.log("Autoplay blocked:", err));
-      document.getElementById('tap-note')?.remove();
-      document.body.removeEventListener('click', startMusicOnce);
-    }
+    // Confetti on load
+    window.onload = function () {
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
 
-    document.body.addEventListener('click', startMusicOnce);
+      // Autoplay fallback
+      const audio = document.getElementById("birthday-audio");
+      const playAttempt = () => {
+        audio.play().catch(() => {
+          // wait for user interaction
+          document.body.addEventListener('click', () => audio.play(), { once: true });
+        });
+      };
+      playAttempt();
+    };
   </script>
 </body>
 </html>
