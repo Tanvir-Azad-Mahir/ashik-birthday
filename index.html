@@ -44,6 +44,20 @@
       left: 0;
       z-index: -1;
     }
+    .stop-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #e60073;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .stop-btn:hover {
+      background: #b30059;
+    }
   </style>
 </head>
 <body>
@@ -52,10 +66,15 @@
   <img src="ashik.jpg" alt="Ashik Rahman" />
   <div class="countdown" id="countdown"></div>
 
-  <audio autoplay loop>
-    <source src="birthday-music.mp3" type="audio/mpeg" />
+  <!-- 🎵 Music with Autoplay -->
+  <audio id="birthday-audio" autoplay loop>
+   <source src="happy.mp3" type="audio/mpeg" />
+
     Your browser does not support the audio element.
   </audio>
+
+  <!-- 🛑 Stop Music Button -->
+  <button class="stop-btn" onclick="document.getElementById('birthday-audio').pause()">Stop Music</button>
 
   <canvas id="confetti-canvas"></canvas>
 
@@ -90,3 +109,4 @@
   </script>
 </body>
 </html>
+
