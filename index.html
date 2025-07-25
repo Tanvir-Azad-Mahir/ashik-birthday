@@ -9,28 +9,54 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #ff99cc, #ccffff);
+      background: linear-gradient(to right, #ff99cc, #66ccff);
+      color: white;
       text-align: center;
-      color: #333;
       overflow-x: hidden;
     }
 
     h1 {
-      font-size: 3em;
-      margin-top: 80px;
-      color: #e60073;
+      margin-top: 50px;
+      font-size: 3rem;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    p {
-      font-size: 1.5em;
+    .photo {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 30px auto;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
 
-    img.main-photo {
-      width: 300px;
-      max-width: 90%;
-      border-radius: 16px;
-      margin-top: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    .wish {
+      font-size: 1.5rem;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px 10px;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     #stop-music-btn {
@@ -53,77 +79,44 @@
       background: #b30059;
     }
 
-    #gallery {
-      text-align: center;
-      padding: 60px 20px;
-      background: #f9f9f9;
-    }
-
-    #gallery h2 {
-      font-size: 2em;
-      margin-bottom: 30px;
-      color: #e60073;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      padding: 0 10px;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-    }
-
-    footer {
-      margin-top: 50px;
-      padding: 20px;
-      background-color: #fff;
+    #tap-note {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      padding: 10px 14px;
+      border-radius: 8px;
       font-size: 14px;
+      color: #fff;
+      z-index: 9998;
+      animation: fadeIn 1s ease-in-out;
     }
   </style>
 </head>
+
 <body>
-  <h1>🎉 Happy Birthday Ashik Rahman 🎉</h1>
-  <p>Wishing you all the love, joy, and success on your special day!</p>
-  <img src="ashik2.jpg" alt="Ashik Rahman" class="main-photo"/>
+  <h1>🎉 Happy Birthday Ashik Rahman 🎂</h1>
+  <img src="ashik.jpg" alt="Ashik Rahman" class="photo" />
+  <p class="wish">
+    Wishing you a day filled with love, joy, and unforgettable memories. Keep smiling and shining bright always! 💖
+  </p>
+
+  <!-- Optional Gallery -->
+  <div class="gallery">
+    <img src="ashik.jpg" alt="Ashik 1">
+    <img src="ashik.jpg" alt="Ashik 2">
+    <img src="ashik.jpg" alt="Ashik 3">
+    <!-- Add more images as needed -->
+  </div>
+
+  <!-- Audio element -->
+  <audio id="birthday-audio" src="happy.mp3" loop></audio>
 
   <!-- Stop Music Button -->
   <button id="stop-music-btn" onclick="stopMusic()">Stop Music</button>
 
-  <!-- Audio (autoplay enabled) -->
-  <audio id="birthday-audio" autoplay loop>
-    <source src="happy.mp3" type="audio/mp3" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- Gallery Section -->
-  <section id="gallery">
-    <h2>📸 Memories with Ashik</h2>
-    <div class="gallery-grid">
-      <img src="ashik.jpg" alt="Ashik photo 1" />
-      <img src="ashik1.jpg" alt="Ashik photo 2" />
-      <img src="ashik3.jpg" alt="Ashik photo 3" />
-      <img src="ashik4.jpg" alt="Ashik photo 4" />
-       <img src="ashik5.jpg" alt="Ashik photo 4" />
-       <img src="ashik6.jpg" alt="Ashik photo 4" />
-      <!-- Add more images as needed -->
-    </div>
-  </section>
-
-  <footer>
-    Made with ❤️ by Tasmia Rahman Mysha 
-  </footer>
+  <!-- Tap to play notice -->
+  <div id="tap-note">🔊 Tap anywhere to play music</div>
 
   <script>
     const audio = document.getElementById('birthday-audio');
@@ -133,12 +126,14 @@
       audio.currentTime = 0;
     }
 
-    // Attempt to autoplay (for browsers that block it without interaction)
-    window.addEventListener('DOMContentLoaded', () => {
-      audio.play().catch(e => {
-        console.log("Autoplay blocked, will play after interaction.");
-      });
-    });
+    // Start music on user interaction
+    function startMusicOnce() {
+      audio.play().catch(err => console.log("Autoplay blocked:", err));
+      document.getElementById('tap-note')?.remove();
+      document.body.removeEventListener('click', startMusicOnce);
+    }
+
+    document.body.addEventListener('click', startMusicOnce);
   </script>
 </body>
 </html>
