@@ -1,120 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Ashik Rahman</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 20px 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ffd6d6, #fff3c4);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start; /* changed from center */
-      min-height: 100vh;
-      text-align: center;
-      overflow-y: auto; /* enable vertical scrolling */
-    }
-    h1 {
-      font-size: 3em;
-      color: #e60073;
-      margin: 20px 0 10px;
-    }
-    h2 {
-      font-size: 1.5em;
-      color: #444;
-    }
-    img {
-      width: 250px;
-      border-radius: 20px;
-      margin-top: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    }
-    .countdown {
-      font-size: 2em;
-      margin: 20px 0;
-      color: #222;
-    }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    .music-btn {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background: #e60073;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .music-btn:hover {
-      background: #b30059;
-    }
-  </style>
-</head>
+<!-- ... keep all your existing HTML and CSS above ... -->
+
+<style>
+  /* existing styles ... */
+
+  /* Add this CSS for the fixed stop button */
+  #stop-music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 18px;
+    font-size: 16px;
+    background: #e60073;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background 0.3s ease;
+    z-index: 9999;
+  }
+  #stop-music-btn:hover {
+    background: #b30059;
+  }
+</style>
+
 <body>
-  <h1>Happy Birthday Ashik Rahman 🎉</h1>
-  <h2>Wishing you joy, success, and love on your special day!</h2>
-  <img src="ashik.jpg" alt="Ashik Rahman" />
-  <div class="countdown" id="countdown"></div>
+  <!-- your existing content -->
 
-  <!-- Audio Setup without autoplay -->
-  <audio id="birthday-audio" loop>
-    <source src="happy.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+  <!-- Remove any other Stop Music buttons you have -->
 
-  <!-- Music Control Buttons -->
-  <button class="music-btn" onclick="playMusic()">Start Music</button>
-  <button class="music-btn" onclick="stopMusic()">Stop Music</button>
-
-  <canvas id="confetti-canvas"></canvas>
+  <!-- Fixed Stop Music Button -->
+  <button id="stop-music-btn" onclick="stopMusic()">Stop Music</button>
 
   <script>
-    const targetDate = new Date("July 29, 2025 00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
-
-    setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      if (distance > 0) {
-        countdownEl.innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-      } else {
-        countdownEl.innerHTML = "🎂 It's Ashik's Birthday Today! 🎈";
-      }
-    }, 1000);
-
     const audio = document.getElementById('birthday-audio');
-    function playMusic() {
-      audio.play();
-    }
+
     function stopMusic() {
       audio.pause();
       audio.currentTime = 0;
     }
+
+    // keep your playMusic function and others as is
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
-    const confettiCanvas = document.getElementById('confetti-canvas');
-    const confetti = window.confetti.create(confettiCanvas, { resize: true });
-    setInterval(() => {
-      confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-    }, 3000);
-  </script>
+  <!-- rest of your scripts -->
 </body>
-</html>
