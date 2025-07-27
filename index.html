@@ -2,105 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Ashik Rahman</title>
-  
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <style>
-    @keyframes gradientBG {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(-45deg, #fce4ec, #fadadd, #f6e2ff, #f9e7f7);
-      background-size: 400% 400%;
-      animation: gradientBG 20s ease infinite;
-      color: #4a2c58;
+      background: linear-gradient(to bottom right, #ffe1ec, #ffffff);
+      font-family: 'Segoe UI', sans-serif;
+      overflow-y: auto;
+      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-      overflow-y: auto;
-      position: relative;
+      min-height: 100vh;
     }
-
-    /* Full width white container */
-    .container-wrapper {
-      width: 100%;
-      background: white;
-      box-shadow: 0 8px 32px rgba(74, 44, 88, 0.1);
-      padding: 60px 0;
-      display: flex;
-      justify-content: center;
-    }
-
     .container {
-      max-width: 640px;
-      width: 90vw;
       text-align: center;
-      animation: fadeInUp 1s ease forwards;
-      opacity: 0;
-      transform: translateY(30px);
+      padding: 80px 20px;
+      max-width: 600px;
+      margin: auto;
+      flex-grow: 1;
     }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 3.8rem;
-      margin: 0 0 15px 0;
-      color: #b6218b;
-      text-shadow: 2px 2px 6px rgba(182, 33, 126, 0.4);
-      animation: floatText 4s ease-in-out infinite;
+      font-family: 'Pacifico', cursive;
+      color: #e60073;
+      font-size: 3em;
     }
-    @keyframes floatText {
-      0%, 100% { transform: translateY(0) }
-      50% { transform: translateY(-10px) }
-    }
-
     .main-photo {
-      width: 280px;
-      max-width: 90vw;
-      border-radius: 50%;
-      border: 6px solid #d93d97;
-      box-shadow: 0 15px 48px rgba(217, 61, 151, 0.5);
-      cursor: pointer;
-      animation: floatImg 6s ease-in-out infinite;
-      transition: transform 0.4s ease;
-      margin: 0 auto 20px auto;
-      display: block;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      margin-top: 40px;
     }
-    .main-photo:hover {
-      transform: scale(1.08) rotate(4deg);
-      box-shadow: 0 25px 60px rgba(217, 61, 151, 0.8);
-    }
-    @keyframes floatImg {
-      0%, 100% { transform: translateY(0) }
-      50% { transform: translateY(-12px) }
-    }
-
     .caption {
       font-style: italic;
-      font-weight: 600;
-      color: #7e4d7a;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.04em;
+      color: #444;
+      margin-top: 10px;
     }
-
     .confetti {
       position: fixed;
       top: 0;
@@ -110,112 +50,109 @@
       pointer-events: none;
       z-index: 10;
     }
+    /* Balloon styling and animation */
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle at 30% 30%, #ff69b4, #e60073);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.8;
+      animation-name: floatUp;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 0 5px rgba(230,0,115,0.5));
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateX(20px) translateY(-50vh) rotate(15deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(0) translateY(-100vh) rotate(0deg);
+        opacity: 0;
+      }
+    }
 
+    /* Top right fixed container for buttons in a row */
     .fixed-buttons {
       position: fixed;
       top: 20px;
       right: 20px;
       display: flex;
-      gap: 14px;
+      gap: 12px;
       z-index: 1000;
-      background: rgba(255 255 255 / 0.85);
-      padding: 10px 16px;
-      border-radius: 50px;
-      box-shadow: 0 10px 30px rgba(217, 61, 151, 0.3);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
     }
-
-    .fixed-buttons a button,
-    .fixed-buttons button.stop-music-btn {
-      padding: 14px 26px;
-      font-size: 15px;
-      font-weight: 700;
-      background-color: #d93d97;
+    .fixed-buttons a button, .fixed-buttons button.stop-music-btn {
+      padding: 12px 18px;
+      font-size: 14px;
+      background-color: #e60073;
       color: white;
       border: none;
-      border-radius: 50px;
+      border-radius: 8px;
       cursor: pointer;
-      min-width: 120px;
-      box-shadow: 0 6px 18px rgba(217, 61, 151, 0.6);
+      min-width: 110px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
       transition: background-color 0.3s ease, transform 0.3s ease;
       white-space: nowrap;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
     }
-    .fixed-buttons a button:hover,
-    .fixed-buttons button.stop-music-btn:hover {
-      background-color: #a92d74;
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(169, 45, 116, 0.8);
+    /* Zoom out effect on hover */
+    .fixed-buttons a button:hover, .fixed-buttons button.stop-music-btn:hover {
+      background-color: #b30059;
+      transform: scale(0.95);
     }
-
+    /* Overlay styles */
     #music-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(255,255,255,0.97);
+      background: rgba(255,255,255,0.95);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.2em;
-      color: #d93d97;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 2em;
+      color: #e60073;
       cursor: pointer;
       z-index: 10000;
       user-select: none;
-      text-shadow: 0 0 8px #d93d97;
     }
-
     footer {
       text-align: center;
-      padding: 16px 20px;
+      padding: 15px 20px;
       font-size: 16px;
-      color: #7e4d7a;
-      background: rgba(255, 255, 255, 0.9);
-      border-top: 1px solid #d6a4be;
-      font-family: 'Montserrat', sans-serif;
-      user-select: none;
-      box-shadow: inset 0 1px 0 #fff;
-      margin-top: auto;
+      color: #333;
+      background: rgba(255, 255, 255, 0.6);
+      border-top: 1px solid #ccc;
       position: relative;
       z-index: 20;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.6rem;
-      }
-      .fixed-buttons {
-        top: 15px;
-        right: 15px;
-        gap: 10px;
-      }
-      .fixed-buttons a button,
-      .fixed-buttons button.stop-music-btn {
-        font-size: 13px;
-        padding: 10px 18px;
-        min-width: 90px;
-      }
-      .main-photo {
-        width: 200px;
-      }
+      font-family: 'Segoe UI', sans-serif;
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
   <canvas class="confetti"></canvas>
 
-  <div class="container-wrapper">
-    <div class="container">
-      <h1>🎉 Happy Birthday Ashik Rahman 🎂</h1>
-      <img src="ashik2.jpg" alt="Ashik Rahman" class="main-photo" />
-      <div class="caption">A day to celebrate you!</div>
-    </div>
+  <div class="container">
+    <h1>🎉 Happy Birthday Ashik Rahman 🎂</h1>
+    <img src="ashik2.jpg" alt="Ashik Rahman" class="main-photo" />
+    <div class="caption">A day to celebrate you!</div>
   </div>
+
+  <!-- Balloons -->
+  <div class="balloon" style="left: 10%; animation-duration: 18s; animation-delay: 0s;"></div>
+  <div class="balloon" style="left: 30%; animation-duration: 15s; animation-delay: 3s;"></div>
+  <div class="balloon" style="left: 50%; animation-duration: 20s; animation-delay: 1s;"></div>
+  <div class="balloon" style="left: 70%; animation-duration: 16s; animation-delay: 4s;"></div>
+  <div class="balloon" style="left: 90%; animation-duration: 17s; animation-delay: 2s;"></div>
 
   <audio id="birthday-audio" loop>
     <source src="happy.mp3" type="audio/mpeg" />
@@ -228,6 +165,7 @@
     <button class="stop-music-btn" id="stop-music-btn">🔇 Stop Music</button>
   </div>
 
+  <!-- Overlay to tap and start music -->
   <div id="music-overlay">🎵 Tap anywhere to start music 🎵</div>
 
   <footer>
