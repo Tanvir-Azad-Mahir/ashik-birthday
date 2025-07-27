@@ -2,67 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Birthday Ashik Rahman</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <!-- Premium Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  
   <style>
+    /* Fullscreen animated gradient background */
+    @keyframes gradientBG {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #f8e3f1 0%, #fceef4 100%);
       font-family: 'Montserrat', sans-serif;
-      overflow-y: auto;
-      position: relative;
+      background: linear-gradient(-45deg, #fce4ec, #fadadd, #f6e2ff, #f9e7f7);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      color: #4a2c58;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      color: #4a2c58;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
     }
+
+    /* Container covers full viewport height */
     .container {
-      text-align: center;
-      padding: 80px 20px;
-      max-width: 600px;
-      margin: auto;
-      flex-grow: 1;
+      max-width: 640px;
+      width: 90vw;
       background: rgba(255 255 255 / 0.9);
-      border-radius: 25px;
-      box-shadow: 0 8px 32px rgba(74, 44, 88, 0.15);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: box-shadow 0.3s ease;
+      border-radius: 32px;
+      box-shadow: 0 12px 36px rgba(74, 44, 88, 0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 60px 30px;
+      text-align: center;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
     }
-    .container:hover {
-      box-shadow: 0 15px 45px rgba(74, 44, 88, 0.3);
+
+    /* Fade in and up animation */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     h1 {
-      font-family: 'Pacifico', cursive;
-      color: #d1287e;
-      font-size: 3em;
-      margin-bottom: 0.25rem;
-      text-shadow: 1px 1px 4px rgba(209, 40, 126, 0.5);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 3.8rem;
+      margin: 0 0 15px 0;
+      color: #b6218b;
+      text-shadow: 2px 2px 6px rgba(182, 33, 139, 0.4);
+      animation: floatText 4s ease-in-out infinite;
     }
+
+    /* Gentle floating text animation */
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0) }
+      50% { transform: translateY(-10px) }
+    }
+
     .main-photo {
-      max-width: 300px;
+      width: 280px;
+      max-width: 90vw;
       border-radius: 50%;
-      box-shadow: 0 10px 35px rgba(209, 40, 126, 0.4);
-      border: 5px solid #e60073;
-      margin-top: 40px;
-      transition: transform 0.4s ease;
+      border: 6px solid #d93d97;
+      box-shadow: 0 15px 48px rgba(217, 61, 151, 0.5);
       cursor: pointer;
+      animation: floatImg 6s ease-in-out infinite;
+      transition: transform 0.4s ease;
+      margin: 0 auto 20px auto;
+      display: block;
     }
     .main-photo:hover {
-      transform: scale(1.07) rotate(3deg);
-      box-shadow: 0 20px 45px rgba(209, 40, 126, 0.7);
+      transform: scale(1.08) rotate(4deg);
+      box-shadow: 0 25px 60px rgba(217, 61, 151, 0.8);
     }
+
+    /* Float animation for image */
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0) }
+      50% { transform: translateY(-12px) }
+    }
+
     .caption {
       font-style: italic;
-      color: #92507a;
-      margin-top: 10px;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      font-size: 1.1em;
+      font-weight: 600;
+      color: #7e4d7a;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
     }
+
     .confetti {
       position: fixed;
       top: 0;
@@ -72,69 +114,112 @@
       pointer-events: none;
       z-index: 10;
     }
-    /* Top right fixed container for buttons in a row */
+
+    /* Fixed top-right button row with pulse effect */
     .fixed-buttons {
       position: fixed;
       top: 20px;
       right: 20px;
       display: flex;
-      gap: 12px;
+      gap: 14px;
       z-index: 1000;
-      background: rgba(255 255 255 / 0.9);
-      padding: 8px 12px;
-      border-radius: 40px;
-      box-shadow: 0 8px 25px rgba(230, 0, 115, 0.25);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255 255 255 / 0.85);
+      padding: 10px 16px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(217, 61, 151, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: pulseGlow 3s ease-in-out infinite;
     }
-    .fixed-buttons a button, .fixed-buttons button.stop-music-btn {
-      padding: 12px 18px;
-      font-size: 14px;
-      background-color: #d1287e;
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 10px 30px rgba(217, 61, 151, 0.3);
+      }
+      50% {
+        box-shadow: 0 15px 40px rgba(217, 61, 151, 0.6);
+      }
+    }
+
+    .fixed-buttons a button,
+    .fixed-buttons button.stop-music-btn {
+      padding: 14px 26px;
+      font-size: 15px;
+      font-weight: 700;
+      background-color: #d93d97;
       color: white;
       border: none;
-      border-radius: 40px;
+      border-radius: 50px;
       cursor: pointer;
-      min-width: 110px;
-      box-shadow: 0 4px 12px rgba(209, 40, 126, 0.7);
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      min-width: 120px;
+      box-shadow: 0 6px 18px rgba(217, 61, 151, 0.6);
+      transition: background-color 0.3s ease, transform 0.3s ease;
       white-space: nowrap;
       user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    .fixed-buttons a button:hover, .fixed-buttons button.stop-music-btn:hover {
-      background-color: #b71567;
-      transform: scale(1.05);
+    .fixed-buttons a button:hover,
+    .fixed-buttons button.stop-music-btn:hover {
+      background-color: #a92d74;
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(169, 45, 116, 0.8);
     }
+
     /* Overlay styles */
     #music-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.97);
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Montserrat', sans-serif;
-      font-size: 2em;
-      color: #d1287e;
+      font-size: 2.2em;
+      color: #d93d97;
       cursor: pointer;
       z-index: 10000;
       user-select: none;
-      text-shadow: 0 0 6px #e60073;
+      text-shadow: 0 0 8px #d93d97;
     }
+
     footer {
       text-align: center;
-      padding: 15px 20px;
+      padding: 16px 20px;
       font-size: 16px;
-      color: #92507a;
+      color: #7e4d7a;
       background: rgba(255, 255, 255, 0.9);
       border-top: 1px solid #d6a4be;
-      position: relative;
-      z-index: 20;
       font-family: 'Montserrat', sans-serif;
-      margin-top: auto;
       user-select: none;
       box-shadow: inset 0 1px 0 #fff;
+      margin-top: auto;
+      position: relative;
+      z-index: 20;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.6rem;
+      }
+      .fixed-buttons {
+        top: 15px;
+        right: 15px;
+        gap: 10px;
+      }
+      .fixed-buttons a button,
+      .fixed-buttons button.stop-music-btn {
+        font-size: 13px;
+        padding: 10px 18px;
+        min-width: 90px;
+      }
+      .main-photo {
+        width: 200px;
+      }
     }
   </style>
 </head>
