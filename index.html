@@ -71,6 +71,22 @@
     .fixed-buttons a button:hover, .fixed-buttons button.stop-music-btn:hover {
       background-color: #b30059;
     }
+    /* Overlay styles */
+    #music-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 2em;
+      color: #e60073;
+      cursor: pointer;
+      z-index: 10000;
+      user-select: none;
+    }
   </style>
 </head>
 <body>
@@ -82,7 +98,7 @@
     <div class="caption">A day to celebrate you!</div>
   </div>
 
-  <audio id="birthday-audio" autoplay loop>
+  <audio id="birthday-audio" loop>
     <source src="happy.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
@@ -92,6 +108,9 @@
     <a href="gallery.html"><button>📷 Gallery</button></a>
     <button class="stop-music-btn" id="stop-music-btn">🔇 Stop Music</button>
   </div>
+
+  <!-- Overlay to tap and start music -->
+  <div id="music-overlay">🎵 Tap anywhere to start music 🎵</div>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
@@ -108,7 +127,19 @@
     setInterval(shoot, 1500);
 
     const audio = document.getElementById('birthday-audio');
+    const overlay = document.getElementById('music-overlay');
     const stopBtn = document.getElementById('stop-music-btn');
+
+    function startMusic() {
+      audio.play().then(() => {
+        overlay.style.display = 'none';
+        stopBtn.textContent = '🔇 Stop Music';
+      }).catch(() => {
+        overlay.style.display = 'flex'; // keep overlay visible if blocked
+      });
+    }
+
+    overlay.addEventListener('click', startMusic);
 
     stopBtn.addEventListener('click', () => {
       if (!audio.paused) {
