@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Birthday Ashik Rahman</title>
   
-  <!-- Premium Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   
   <style>
-    /* Fullscreen animated gradient background */
     @keyframes gradientBG {
       0%{background-position:0% 50%}
       50%{background-position:100% 50%}
@@ -33,23 +32,24 @@
       position: relative;
     }
 
-    /* Container covers full viewport height */
+    /* Full width white container */
+    .container-wrapper {
+      width: 100%;
+      background: white;
+      box-shadow: 0 8px 32px rgba(74, 44, 88, 0.1);
+      padding: 60px 0;
+      display: flex;
+      justify-content: center;
+    }
+
     .container {
       max-width: 640px;
       width: 90vw;
-      background: rgba(255 255 255 / 0.9);
-      border-radius: 32px;
-      box-shadow: 0 12px 36px rgba(74, 44, 88, 0.2);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 60px 30px;
       text-align: center;
       animation: fadeInUp 1s ease forwards;
       opacity: 0;
       transform: translateY(30px);
     }
-
-    /* Fade in and up animation */
     @keyframes fadeInUp {
       to {
         opacity: 1;
@@ -63,11 +63,9 @@
       font-size: 3.8rem;
       margin: 0 0 15px 0;
       color: #b6218b;
-      text-shadow: 2px 2px 6px rgba(182, 33, 139, 0.4);
+      text-shadow: 2px 2px 6px rgba(182, 33, 126, 0.4);
       animation: floatText 4s ease-in-out infinite;
     }
-
-    /* Gentle floating text animation */
     @keyframes floatText {
       0%, 100% { transform: translateY(0) }
       50% { transform: translateY(-10px) }
@@ -89,8 +87,6 @@
       transform: scale(1.08) rotate(4deg);
       box-shadow: 0 25px 60px rgba(217, 61, 151, 0.8);
     }
-
-    /* Float animation for image */
     @keyframes floatImg {
       0%, 100% { transform: translateY(0) }
       50% { transform: translateY(-12px) }
@@ -115,7 +111,6 @@
       z-index: 10;
     }
 
-    /* Fixed top-right button row with pulse effect */
     .fixed-buttons {
       position: fixed;
       top: 20px;
@@ -129,16 +124,6 @@
       box-shadow: 0 10px 30px rgba(217, 61, 151, 0.3);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      animation: pulseGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow: 0 10px 30px rgba(217, 61, 151, 0.3);
-      }
-      50% {
-        box-shadow: 0 15px 40px rgba(217, 61, 151, 0.6);
-      }
     }
 
     .fixed-buttons a button,
@@ -168,7 +153,6 @@
       box-shadow: 0 8px 25px rgba(169, 45, 116, 0.8);
     }
 
-    /* Overlay styles */
     #music-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -201,7 +185,6 @@
       z-index: 20;
     }
 
-    /* Responsive tweaks */
     @media (max-width: 600px) {
       h1 {
         font-size: 2.6rem;
@@ -226,10 +209,12 @@
 <body>
   <canvas class="confetti"></canvas>
 
-  <div class="container">
-    <h1>🎉 Happy Birthday Ashik Rahman 🎂</h1>
-    <img src="ashik2.jpg" alt="Ashik Rahman" class="main-photo" />
-    <div class="caption">A day to celebrate you!</div>
+  <div class="container-wrapper">
+    <div class="container">
+      <h1>🎉 Happy Birthday Ashik Rahman 🎂</h1>
+      <img src="ashik2.jpg" alt="Ashik Rahman" class="main-photo" />
+      <div class="caption">A day to celebrate you!</div>
+    </div>
   </div>
 
   <audio id="birthday-audio" loop>
@@ -243,7 +228,6 @@
     <button class="stop-music-btn" id="stop-music-btn">🔇 Stop Music</button>
   </div>
 
-  <!-- Overlay to tap and start music -->
   <div id="music-overlay">🎵 Tap anywhere to start music 🎵</div>
 
   <footer>
