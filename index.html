@@ -14,12 +14,16 @@
       overflow-y: auto;
       position: relative;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     .container {
       text-align: center;
       padding: 80px 20px;
       max-width: 600px;
       margin: auto;
+      flex-grow: 1;
     }
     h1 {
       font-family: 'Pacifico', cursive;
@@ -87,6 +91,18 @@
       z-index: 10000;
       user-select: none;
     }
+    footer {
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 16px;
+      color: #333;
+      background: rgba(255, 255, 255, 0.6);
+      border-top: 1px solid #ccc;
+      position: relative;
+      z-index: 20;
+      font-family: 'Segoe UI', sans-serif;
+      margin-top: auto;
+    }
   </style>
 </head>
 <body>
@@ -111,6 +127,10 @@
 
   <!-- Overlay to tap and start music -->
   <div id="music-overlay">🎵 Tap anywhere to start music 🎵</div>
+
+  <footer>
+    Made with ❤️ by Tsmia Rahman Mysha
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
